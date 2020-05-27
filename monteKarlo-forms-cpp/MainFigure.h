@@ -4,16 +4,16 @@
 ref class MainFigure
 {
 public:
-	MainFigure (PointF^ leftPointF, PointF^ upPointF, PointF^ rightPointF);
+	MainFigure (PointF^ leftPointF, PointF^ upPointF, PointF^ rightPointF);	//конструктор
 
-	void setMinsAndMaxs ();
-	void calculateSquare ();
+	void setMinsAndMaxs ();	//выставление minx и прочего
+	void calculateSquare ();	//вычисление площади прямоугольника, в который мы потом впишем фигру
 
-	bool isInside (PointF^ newPointF);
+	bool isInside (PointF^ newPointF);	//проверка, внутри ли всей фигуры
 
-	double calculateActualSquare();
+	double calculateActualSquare();	//вычисление площади вписанной фигуры (bcd)
 
-	double getMinY ();
+	double getMinY ();	//геты значений
 	double getMinX ();
 	double getMaxY ();
 	double getMaxX ();
@@ -21,19 +21,19 @@ public:
 	double getSquare ();
 	
 private:
-	PointF^ leftPointF_;
-	PointF^ upPointF_;
-	PointF^ rightPointF_;
+	PointF^ leftPointF_;	//точка b
+	PointF^ upPointF_;	//точка c
+	PointF^ rightPointF_;	//точка d
 
-	double minY_;
+	double minY_;	//тут все ясно
 	double minX_;
 	double maxY_;
 	double maxX_;
 
-	double square_;
+	double square_;	//площадь большого прямоугольника
 
-	LinearFunction^ first_;
-	LinearFunction^ second_;
-	LinearFunction^ third_;
+	LinearFunction^ first_;	//линейная функция соединяющая точки b и c
+	LinearFunction^ second_;	//точки c and d
+	LinearFunction^ third_;	//точки d and b
 };
 

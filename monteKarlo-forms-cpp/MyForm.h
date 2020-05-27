@@ -17,7 +17,7 @@ namespace monteKarloformscpp
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	private:
-		Generic::List <PointF>^ mainList_ = gcnew Generic::List<PointF> ();
+		Generic::List <PointF>^ mainList_ = gcnew Generic::List<PointF> ();	//список точек
 		
 	public:
 		MyForm(void)
@@ -39,6 +39,9 @@ namespace monteKarloformscpp
 				delete components;
 			}
 		}
+
+		/////////////////////////////////////////////////////////////////////////
+		/////////////далее всякий внутренний код ВС, который генериться автоматически
 
 	private:
 		System::Windows::Forms::Label^ label1;
@@ -231,25 +234,26 @@ namespace monteKarloformscpp
 
 		}
 
+		///////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////конец автоматически сгенерированной ебалы
+
 		
 #pragma endregion
 		System::Void button1_Click (System::Object^ sender, System::EventArgs^ e)
-		{
-			if (setPoints () == false) {
+		{	//при нажатии на кнопку начало вычисления площади
+			if (setPoints () == false) {	//проверка того, ввелись ли пользователем точки
 				return;
 			}
 
-			OOP^ main1 = gcnew OOP (mainList_);
-			outputResult (main1->calculate ());
+			OOP^ main1 = gcnew OOP (mainList_);	//создание класса, в котором все будет вычисляться
+			outputResult (main1->calculate ());	//вызов функиии вычисления, которая вернет данные
 
 			mainList_->Clear ();
 		}
 
 
 		void outputResult (ReturnedData^ dataForOutput)
-		{
-			//var dataGridView1 = dataGrids[textBoxNumber];
-
+		{	//распихивание данных по колонкам
 			auto squares = dataForOutput->getSquares();
 			auto accs = dataForOutput->getAccs();
 			auto numbOfPoints = dataForOutput->getNumber();
@@ -270,28 +274,14 @@ namespace monteKarloformscpp
 			}
 
 			dataGridView1->Rows->Add ();
-
-			//dataGridView1.Rows.Add();
-			// RichTextBox[] textBoxes = new RichTextBox[] {forOOP, forNonOOP};
-			//
-			// textBoxes[textBoxNumber].Text += "\n\r\n\r";
-			//
-			// var squares = dataForOutput.CalculatedSquares;
-			// var accs = dataForOutput.Accuracies;
-			// for (int i = 0; i < squares.Count; i++) {
-			//     textBoxes[textBoxNumber].Text += $"Площадь = {squares[i]}   Погрешность = {accs[i]}\n\r";
-			// }
-			//
-			// textBoxes[textBoxNumber].Text += $"Настоящая Площадь = {dataForOutput.actualSquare}\n\rВремя Затрачено: {dataForOutput.time}";
 		}
 
 		
 		bool setPoints ()
 		{
 			array<String^>^ temp;
-			//Generic::List<String^>^ temp = gcnew Generic::List<String^>();
 
-			try {
+			try {	//попытки конвертации текста из текстбоксов в double значения и поинты
 				temp = textBox1->Text->Replace ('.', ',')->Split (gcnew array<Char> {' '});
 
 				mainList_->Add (PointF (Convert::ToDouble (temp[0]), Convert::ToDouble (temp[1])));
