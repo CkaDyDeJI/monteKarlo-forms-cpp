@@ -1,10 +1,10 @@
 #include "LinearFunction.h"
 
 
-LinearFunction::LinearFunction (Point^ firstPoint, Point^ secondPoint)
+LinearFunction::LinearFunction (PointF^ firstPointF, PointF^ secondPointF)
 {
-	k_ = Convert::ToDouble(secondPoint->Y - firstPoint->Y) / Convert::ToDouble (secondPoint->X - firstPoint->X);
-	b_ = Convert::ToDouble(firstPoint->Y) - k_ * Convert::ToDouble(firstPoint->X);
+	k_ = (secondPointF->Y - firstPointF->Y) / (secondPointF->X - firstPointF->X);
+	b_ = firstPointF->Y - k_ * firstPointF->X;
 }
 
 
@@ -17,5 +17,5 @@ LinearFunction::LinearFunction ( LinearFunction% newOne )
 
 bool LinearFunction::isInside (double x, double y)
 {
-	return (Convert::ToDouble(y) <= (Convert::ToDouble(k_)* Convert::ToDouble(x) + Convert::ToDouble(b_))) ? true : false;
+	return (y < k_* x + b_) ? true : false;
 }

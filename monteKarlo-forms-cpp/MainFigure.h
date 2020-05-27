@@ -4,12 +4,12 @@
 ref class MainFigure
 {
 public:
-	MainFigure (Point^ leftPoint, Point^ upPoint, Point^ rightPoint);
+	MainFigure (PointF^ leftPointF, PointF^ upPointF, PointF^ rightPointF);
 
 	void setMinsAndMaxs ();
 	void calculateSquare ();
 
-	bool isInside (Point^ newPoint);
+	bool isInside (PointF^ newPointF);
 
 	double calculateActualSquare();
 
@@ -21,9 +21,9 @@ public:
 	double getSquare ();
 	
 private:
-	Point^ leftPoint_;
-	Point^ upPoint_;
-	Point^ rightPoint_;
+	PointF^ leftPointF_;
+	PointF^ upPointF_;
+	PointF^ rightPointF_;
 
 	double minY_;
 	double minX_;

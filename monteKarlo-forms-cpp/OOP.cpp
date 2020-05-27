@@ -1,42 +1,41 @@
 #include "OOP.h"
 
 
-OOP::OOP (Collections::Generic::List <Point>^ pointsArray)
+OOP::OOP ( System::Collections::Generic::List <PointF>^ PointsArray)
 {
-	mainFigure_ = gcnew MainFigure (pointsArray[0], pointsArray[1], pointsArray[2]);
+	mainFigure_ = gcnew MainFigure (PointsArray[0], PointsArray[1], PointsArray[2]);
 }
 
 
 ReturnedData^ OOP::calculate ()
 {
     ReturnedData^ data = gcnew ReturnedData ();
-    Diagnostics::Stopwatch^ watch = gcnew Diagnostics::Stopwatch ();
+    System::Diagnostics::Stopwatch^ watch = gcnew System::Diagnostics::Stopwatch ();
     watch->Start ();
 
     auto actualSquare = mainFigure_->calculateActualSquare ();
     data->setAcSquare (actualSquare);
-
-    Random^ number = gcnew Random ();
+    System::Random^ number = gcnew System::Random ();
     double insideCounter;
     double randomX;
     double randomY;
     for (int i = 0; i < 5; i++) {
         watch->Start ();
-        double n = Math::Pow (10, i + 3);
+        double n = System::Math::Pow (10, i + 3);
 
         insideCounter = 0;
         for (int j = 0; j < n; j++) {
             randomX = mainFigure_->getMinX() + System::Convert::ToDouble (number->Next (0, 132767)) / 132767 * (mainFigure_->getMaxX() - mainFigure_->getMinX()); //minX_ * number.Next (ToInt32 ( minX_ ), ToInt32(maxX_));
             randomY = mainFigure_->getMinY() + System::Convert::ToDouble (number->Next (0, 132767)) / 132767 * (mainFigure_->getMaxY() - mainFigure_->getMinY()); //number.Next (ToInt32 ( minY_ ), ToInt32(maxY_));
-            if (mainFigure_->isInside (gcnew Point (randomX, randomY)) == true)
+            if (mainFigure_->isInside (gcnew PointF (randomX, randomY)) == true)
                 insideCounter++;
         }
 
-        auto square = Convert::ToDouble(mainFigure_->getSquare()) * Convert::ToDouble(insideCounter) / Convert::ToDouble(n);
+        auto square = mainFigure_->getSquare() * insideCounter / n;
         watch->Stop ();
 
         data->addSquare (square);
-        data->addAcc (Math::Abs (square - actualSquare) / actualSquare);
+        data->addAcc ( System::Math::Abs (square - actualSquare) / actualSquare);
         data->addPoints (n);
         data->addPointsInside (insideCounter);
         data->addTime (watch->Elapsed);

@@ -6,7 +6,7 @@
 ref class OOP
 {
 public:
-	explicit OOP ( Collections::Generic::List <Point>^ pointsArray);
+	explicit OOP ( System::Collections::Generic::List <PointF>^ PointFsArray);
 
 	ReturnedData^ calculate ();
 	
