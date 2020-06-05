@@ -6,9 +6,9 @@
 ref class OOP
 {
 public:
-	explicit OOP ( System::Collections::Generic::List <PointF>^ PointFsArray);
+	explicit OOP ( System::Collections::Generic::List <PointF>^ PointFsArray);	//конструктор
 
-	ReturnedData^ calculate ();
+	ReturnedData^ calculate ();	//вычисление количества точек внутри
 	
 private:
 	MainFigure^ mainFigure_;

@@ -1,18 +1,19 @@
 #pragma once
 //using System::Collections::Generic;
 
-ref class ReturnedData
+ref class ReturnedData	//класс в котором хранятся вычисленные значения, чтобы передавать его из одного класса в форму
 {
 public:
-	ReturnedData ();
+	ReturnedData ();	//просто констуктор
 	
-	void addSquare (double newSquare);
-	void addAcc (double newAcc);
-	void addPoints (double number);
-	void addPointsInside (double number);
-	void addTime ( System::TimeSpan time);
+	//доавбления в список последним элементом
+	void addSquare (double newSquare);	//с площадями методами монте карло
+	void addAcc (double newAcc);	//точности вычисления
+	void addPoints (double number);	//изначальное количество точек
+	void addPointsInside (double number);	//сколько из них внутри
+	void addTime ( System::TimeSpan time);	//время на вычисление каждой итерации
 
-	System::Collections::Generic::List<double>^ getSquares ();
+	System::Collections::Generic::List<double>^ getSquares ();	//геты
 	System::Collections::Generic::List<double>^ getAccs ();
 	System::Collections::Generic::List<double>^ getNumber ();
 	System::Collections::Generic::List<double>^ getInside ();
@@ -21,7 +22,7 @@ public:
 	//System::TimeSpan^ getTime ();
 	double getAcSquare ();
 	void setAcSquare (double newSquare);
-	
+		//установление настоящей площади
 private:
 	System::Collections::Generic::List<double>^ calculatedSquares;
 	System::Collections::Generic::List<double>^ accuracies;

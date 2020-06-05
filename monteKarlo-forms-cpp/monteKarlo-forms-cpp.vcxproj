@@ -125,7 +125,6 @@
     <ClCompile Include="MainFigure.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="OOP.cpp" />
-    <ClCompile Include="Point.cpp" />
     <ClCompile Include="ReturnedData.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +134,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="OOP.h" />
-    <ClInclude Include="Point.h" />
     <ClInclude Include="ReturnedData.h" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@ ReturnedData::ReturnedData ()
 }
 
 
-void ReturnedData::addSquare ( double newSquare )
+void ReturnedData::addSquare ( double newSquare )   //в каждой функции с add просто доавбление в конец списка
 {
     calculatedSquares->Add (newSquare);
 }
