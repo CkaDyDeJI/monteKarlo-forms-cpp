@@ -18,7 +18,7 @@ public:
 	System::Collections::Generic::List<double>^ getInside ();
 	System::Collections::Generic::List<System::TimeSpan>^ getTimes ();
 
-	System::TimeSpan^ getTime ();
+	//System::TimeSpan^ getTime ();
 	double getAcSquare ();
 	void setAcSquare (double newSquare);
 	
@@ -29,7 +29,7 @@ private:
 	System::Collections::Generic::List<double>^ numberOfPointsInside;
 	System::Collections::Generic::List<System::TimeSpan>^ times;
 
-	System::TimeSpan^ time;
+	//System::TimeSpan^ time;
 	double actualSquare;
 };
 

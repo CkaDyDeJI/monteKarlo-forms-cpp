@@ -71,10 +71,10 @@ System::Collections::Generic::List<System::TimeSpan>^ ReturnedData::getTimes ()
 }
 
 
-System::TimeSpan^ ReturnedData::getTime ()
-{
-    return time;
-}
+// System::TimeSpan^ ReturnedData::getTime ()
+// {
+//     return time;
+// }
 
 
 double ReturnedData::getAcSquare ()

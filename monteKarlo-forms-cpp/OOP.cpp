@@ -11,7 +11,7 @@ ReturnedData^ OOP::calculate ()
 {
     ReturnedData^ data = gcnew ReturnedData ();
     System::Diagnostics::Stopwatch^ watch = gcnew System::Diagnostics::Stopwatch ();
-    watch->Start ();
+    //watch->Start ();
 
     auto actualSquare = mainFigure_->calculateActualSquare ();
     data->setAcSquare (actualSquare);
