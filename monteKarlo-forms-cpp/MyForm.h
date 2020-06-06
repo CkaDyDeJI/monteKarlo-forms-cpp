@@ -59,6 +59,8 @@ namespace monteKarloformscpp
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ accuracy;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ time;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::TextBox^ textBox4;
+	private: System::Windows::Forms::Label^ label4;
 
 
 
@@ -93,6 +95,8 @@ namespace monteKarloformscpp
 			this->accuracy = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn ());
 			this->time = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn ());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox ());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox ());
+			this->label4 = (gcnew System::Windows::Forms::Label ());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit ();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit ();
 			this->SuspendLayout ();
@@ -211,11 +215,29 @@ namespace monteKarloformscpp
 			this->pictureBox1->TabIndex = 8;
 			this->pictureBox1->TabStop = false;
 			// 
+			// textBox4
+			// 
+			this->textBox4->Location = System::Drawing::Point (134, 420);
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size (100, 20);
+			this->textBox4->TabIndex = 9;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point (39, 426);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size (35, 13);
+			this->label4->TabIndex = 10;
+			this->label4->Text = L"label4";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF (6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size (1085, 649);
+			this->Controls->Add (this->label4);
+			this->Controls->Add (this->textBox4);
 			this->Controls->Add (this->pictureBox1);
 			this->Controls->Add (this->dataGridView1);
 			this->Controls->Add (this->button1);
@@ -225,7 +247,7 @@ namespace monteKarloformscpp
 			this->Controls->Add (this->label3);
 			this->Controls->Add (this->label2);
 			this->Controls->Add (this->label1);
-			this->Name = L"MyForm";;
+			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit ();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit ();
@@ -307,6 +329,16 @@ namespace monteKarloformscpp
 				mainList_->Add (PointF (Convert::ToDouble (temp[0]), Convert::ToDouble (temp[1])));
 			} catch(...) {
 				MessageBox::Show ("правая точка задана неверна");
+
+				return false;
+			}
+
+			try {	//попытки конвертации текста из текстбоксов в double значения и поинты
+				temp = textBox4->Text->Replace ('.', ',')->Split (gcnew array<Char> {' '});
+
+				mainList_->Add (PointF (Convert::ToDouble (temp[0]), Convert::ToDouble (temp[1])));
+			} catch (...) {
+				MessageBox::Show ("левая точка задана неверна");
 
 				return false;
 			}

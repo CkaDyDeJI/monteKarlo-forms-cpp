@@ -3,7 +3,7 @@
 
 OOP::OOP ( System::Collections::Generic::List <PointF>^ PointsArray)
 {
-	mainFigure_ = gcnew MainFigure (PointsArray[0], PointsArray[1], PointsArray[2]);    //инициализуем исходный прямоугольник и вписанную фигуру
+	mainFigure_ = gcnew MainFigure (PointsArray[0], PointsArray[1], PointsArray[2], PointsArray[3]);    //инициализуем исходный прямоугольник и вписанную фигуру
 }
 
 
@@ -27,7 +27,7 @@ ReturnedData^ OOP::calculate ()
         for (int j = 0; j < n; j++) {
             randomX = mainFigure_->getMinX() + System::Convert::ToDouble (number->Next (0, 132767)) / 132767 * (mainFigure_->getMaxX() - mainFigure_->getMinX());   //генерация равномерно распределенных случайных точек
             randomY = mainFigure_->getMinY() + System::Convert::ToDouble (number->Next (0, 132767)) / 132767 * (mainFigure_->getMaxY() - mainFigure_->getMinY());
-            if (mainFigure_->isInside (gcnew PointF (randomX, randomY)) == true)    // проверка, внутри ли она
+            if (mainFigure_->isInside (randomX, randomY) == true)    // проверка, внутри ли она
                 insideCounter++;
         }
 
