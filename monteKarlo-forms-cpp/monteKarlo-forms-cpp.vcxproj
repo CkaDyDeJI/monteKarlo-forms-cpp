@@ -121,25 +121,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Circle.cpp" />
     <ClCompile Include="LinearFunction.cpp" />
     <ClCompile Include="MainFigure.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="OOP.cpp" />
-    <ClCompile Include="ReturnedData.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractFigure.h" />
+    <ClInclude Include="Circle.h" />
     <ClInclude Include="LinearFunction.h" />
     <ClInclude Include="MainFigure.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="OOP.h" />
-    <ClInclude Include="ReturnedData.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

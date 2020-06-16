@@ -1,19 +1,14 @@
 #include "OOP.h"
 
 
-OOP::OOP ( System::Collections::Generic::List <PointF>^ PointsArray)
-{
-	mainFigure_ = gcnew MainFigure (PointsArray[0], PointsArray[1], PointsArray[2], PointsArray[3]);    //инициализуем исходный прямоугольник и вписанную фигуру
-}
+OOP::OOP ( System::Collections::Generic::List <PointF>^ PointsArray) : MainFigure (PointsArray[0], PointsArray[1]) {}
 
 
-ReturnedData^ OOP::calculate ()
+void OOP::calculate ( System::Windows::Forms::DataGridView^ table)
 {
-    ReturnedData^ data = gcnew ReturnedData (); 
     System::Diagnostics::Stopwatch^ watch = gcnew System::Diagnostics::Stopwatch ();    //создаем таймер
 
-    auto actualSquare = mainFigure_->calculateActualSquare ();  //вычисление настоящей площади вписанное фигуры
-    data->setAcSquare (actualSquare);   //доавбление в данным
+    auto actualSquare = calculateActualSquare ();  //вычисление настоящей площади вписанное фигуры
 
     System::Random^ number = gcnew System::Random ();
     double insideCounter;
@@ -25,23 +20,15 @@ ReturnedData^ OOP::calculate ()
 
         insideCounter = 0;  //счетчик точек внутри
         for (int j = 0; j < n; j++) {
-            randomX = mainFigure_->getMinX() + System::Convert::ToDouble (number->Next (0, 132767)) / 132767 * (mainFigure_->getMaxX() - mainFigure_->getMinX());   //генерация равномерно распределенных случайных точек
-            randomY = mainFigure_->getMinY() + System::Convert::ToDouble (number->Next (0, 132767)) / 132767 * (mainFigure_->getMaxY() - mainFigure_->getMinY());
-            if (mainFigure_->isInside (randomX, randomY) == true)    // проверка, внутри ли она
+            randomX = getMinX() + System::Convert::ToDouble (number->Next (0, 132767)) / 132767 * (getMaxX() - getMinX());   //генерация равномерно распределенных случайных точек
+            randomY = getMinY() + System::Convert::ToDouble (number->Next (0, 132767)) / 132767 * (getMaxY() - getMinY());
+            if (isInside (randomX, randomY) == true)    // проверка, внутри ли она
                 insideCounter++;
         }
 
-        auto square = mainFigure_->getSquare() * insideCounter / n; //вычисление площади при помощи формулы s * points / pointsInside
+        auto square = getSquare() * insideCounter / n; //вычисление площади при помощи формулы s * points / pointsInside
         watch->Stop (); //остановка таймера
 
-        data->addSquare (square);   //добавление вещей в массив
-        data->addAcc ( System::Math::Abs (square - actualSquare) / actualSquare);
-        data->addPoints (n);
-        data->addPointsInside (insideCounter);
-        data->addTime (watch->Elapsed);
-
-        watch->Reset ();    //рестарт таймера
+        table->Rows->Add (n, insideCounter, actualSquare, square, System::Math::Round (System::Math::Abs (square - actualSquare) / actualSquare * 100, 3), watch->ElapsedMilliseconds);
     }
-
-    return data;
 }

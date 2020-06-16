@@ -27,7 +27,7 @@
     <ClCompile Include="OOP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ReturnedData.cpp">
+    <ClCompile Include="Circle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,8 +44,14 @@
     <ClInclude Include="OOP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ReturnedData.h">
+    <ClInclude Include="Circle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AbstractFigure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

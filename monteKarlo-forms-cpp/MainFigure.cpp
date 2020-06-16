@@ -1,80 +1,83 @@
 #include "MainFigure.h"
 
 
-MainFigure::MainFigure (PointF^ aPointF, PointF^ bPointF, PointF^ cPointF, PointF^ dPointF )
+MainFigure::MainFigure (PointF^ bPointF, PointF^ fPointF)
 {
-    aPointF_ = gcnew PointF(aPointF->X, aPointF->Y);   //инициализация точек внутри класса из внешних точек
-    bPointF_ = gcnew PointF (bPointF->X, bPointF->Y);
-    cPointF_ = gcnew PointF (cPointF->X, cPointF->Y);
-    dPointF_ = gcnew PointF (dPointF->X, dPointF->Y);
+    this->bPointF = bPointF;   //инициализация точек внутри класса из внешних точек
+    this->fPointF = fPointF;
+
+    beCircle = gcnew Circle (bPointF, fPointF);
+    efLine = gcnew LinearFunction (gcnew PointF (bPointF->X + beCircle->getRadius (), (bPointF->Y + fPointF->Y) / 2), fPointF);
 	
     setMinsAndMaxs ();  //вызов функции вычисления мин и макс значений
 
-    calculateSquare (); //площади
-
-    first_ = gcnew LinearFunction (bPointF_, cPointF_); //инициализация линейных функций (отрезков)
-    second_ = gcnew LinearFunction (cPointF_, dPointF_);
-    third_ = gcnew LinearFunction (dPointF_, aPointF_);
+    square(); //площади
 }
 
 
 void MainFigure::setMinsAndMaxs ()
 {
-    minX_ = aPointF_->X; //тут все ясно
-    maxX_ = dPointF_->X;
-    minY_ = aPointF_->Y;
-    maxY_ = cPointF_->Y;
+    minX = bPointF->X; //тут все ясно
+    maxX = bPointF->X + beCircle->getRadius();
+    minY = fPointF->Y;
+    maxY = bPointF->Y;
 }
 
 
-void MainFigure::calculateSquare ()
+double MainFigure::square ()
 {
-    square_ = (maxX_ - minX_) * (maxY_ - minY_);    //просто площадь прямоугольника
+    rectSquare = (maxX - minX) * (maxY - minY);    //просто площадь прямоугольника
+    return rectSquare;
 }
 
 
 bool MainFigure::isInside (double x, double y)
 {
-    if ((first_->isInside (x, y) == true) &&  //если под отрезком b and c
-        (second_->isInside (x, y) == true) && //и под отрезком c and d
-        (third_->isInside (x, y) == false))   //и над отрезком d and b одновременно, то тогда внутри искомой фигуры
-        return true;
-    else
-        return false;
+	if (y <= beCircle->getY())
+	{
+        if (efLine->isInside (x, y) == false)   //если над отрезком e and f, то тогда внутри искомой фигуры
+            return true;
+	} else
+	{
+        if (beCircle->isInside (x, y) == true)  //если внутри круга
+            return true;
+	}
+
+    return false;
 }
 
 
 double MainFigure::calculateActualSquare ()
 {   //из общей площади прямоугольника вычитаем площади 3 треугольников, которые отсекаются от основной фигуры отрезками заданными выше
-    return (square_ - ((maxY_ - bPointF_->Y) * (cPointF_->X - minX_) * 0.5) - ((maxX_ - cPointF_->X) * (maxY_ - dPointF_->Y) * 0.5) - ((dPointF_->Y - minY_) * (maxX_ - aPointF_->X) * 0.5));
+    return beCircle->square() / 4  + (rectSquare / 2 - (beCircle->getY() - minY) * (maxX - minX) * 0.5);
 }
 
 
 double MainFigure::getMinY ()
 {
-    return minY_;
+    return minY;
 }
 
 
 double MainFigure::getMinX ()
 {
-    return minX_;
+    return minX;
 }
 
 
 double MainFigure::getMaxY ()
 {
-    return maxY_;
+    return maxY;
 }
 
 
 double MainFigure::getMaxX ()
 {
-    return maxX_;
+    return maxX;
 }
 
 
 double MainFigure::getSquare ()
 {
-    return square_;
+    return rectSquare;
 }

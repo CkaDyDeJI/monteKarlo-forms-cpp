@@ -1,17 +1,18 @@
 #pragma once
 #include "LinearFunction.h"
+#include "Circle.h"
 
-ref class MainFigure
+ref class MainFigure : AbstractFigure
 {
 public:
-	MainFigure (PointF^ aPointF, PointF^ bPointF, PointF^ cPointF, PointF^ dPointF);	//конструктор
+	MainFigure (PointF^ bPointF, PointF^ fPointF);	//конструктор
 
 	void setMinsAndMaxs ();	//выставление minx и прочего
-	void calculateSquare ();	//вычисление площади прямоугольника, в который мы потом впишем фигру
+	double calculateActualSquare ();	//вычисление площади прямоугольника, в который мы потом впишем фигру
 
-	bool isInside (double x, double y);	//проверка, внутри ли всей фигуры
+	bool isInside (double x, double y) override;	//проверка, внутри ли всей фигуры
 
-	double calculateActualSquare();	//вычисление площади вписанной фигуры (abcd)
+	double square () override;	//вычисление площади вписанной фигуры (bef)
 
 	double getMinY ();	//геты значений
 	double getMinX ();
@@ -21,20 +22,18 @@ public:
 	double getSquare ();
 	
 private:
-	PointF^ aPointF_;	//точка b
-	PointF^ bPointF_;	//точка c
-	PointF^ cPointF_;	//точка d
-	PointF^ dPointF_;
+	PointF^ bPointF;	//точка b
+	PointF^ fPointF;	//точка f
 
-	double minY_;	//тут все ясно
-	double minX_;
-	double maxY_;
-	double maxX_;
+	double minY;	//тут все ясно
+	double minX;
+	double maxY;
+	double maxX;
 
-	double square_;	//площадь большого прямоугольника
+	double rectSquare;	//площадь большого прямоугольника
 
-	LinearFunction^ first_;	//линейная функция соединяющая точки b и c
-	LinearFunction^ second_;	//точки c and d
-	LinearFunction^ third_;	//точки d and a
+	Circle^ beCircle;
+
+	LinearFunction^ efLine;	//линейная функция соединяющая точки e и f
 };
 

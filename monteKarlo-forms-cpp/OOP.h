@@ -1,16 +1,12 @@
 #pragma once
 #include "MainFigure.h"
-#include "ReturnedData.h"
 
 
-ref class OOP
+ref class OOP : MainFigure
 {
 public:
 	explicit OOP ( System::Collections::Generic::List <PointF>^ PointFsArray);	//конструктор
 
-	ReturnedData^ calculate ();	//вычисление количества точек внутри
-	
-private:
-	MainFigure^ mainFigure_;
+	void calculate (System::Windows::Forms::DataGridView^ table);	//вычисление количества точек внутри
 };
 
