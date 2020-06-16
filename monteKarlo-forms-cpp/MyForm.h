@@ -101,8 +101,8 @@ namespace monteKarloformscpp
 			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton ());
 			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton ());
 			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton ());
-			(safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit ();
-			(safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit ();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit ();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit ();
 			this->groupBox1->SuspendLayout ();
 			this->SuspendLayout ();
 			// 
@@ -201,11 +201,11 @@ namespace monteKarloformscpp
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->BackgroundImage = (safe_cast<System::Drawing::Image^>(resources->GetObject (L"pictureBox1.BackgroundImage")));
-			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->pictureBox1->Location = System::Drawing::Point (375, 19);
+			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject (L"pictureBox1.BackgroundImage")));
+			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->pictureBox1->Location = System::Drawing::Point (451, 12);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size (312, 169);
+			this->pictureBox1->Size = System::Drawing::Size (323, 231);
 			this->pictureBox1->TabIndex = 8;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -284,8 +284,8 @@ namespace monteKarloformscpp
 			this->Controls->Add (this->dataGridView1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
-			(safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit ();
-			(safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit ();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit ();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit ();
 			this->groupBox1->ResumeLayout (false);
 			this->groupBox1->PerformLayout ();
 			this->ResumeLayout (false);
